@@ -36,6 +36,9 @@ ls -l /root/.ssh/id_rsa
 If file exists, do not recreate it; if it doesn't exist then create
 
 
+![](https://github.com/user-attachments/assets/0e89a280-56c6-4233-9fde-1734fab0f457)
+
+
 2. Generate SSH key pair
 
 To generate the SSH keypair in the aws client, run:
@@ -61,6 +64,8 @@ Two files are created;
 
 For this task, the private key stays on the aws client, whereas the public key gets copied to the EC2 instance.
 
+![](https://github.com/user-attachments/assets/dbffd0e1-1341-46db-8f7c-8f2a90592e8c)
+
 
 3. Create the EC2 instance
 
@@ -85,6 +90,9 @@ aws ec2 run-instances \
 | `--tag-specifications`     | Set instance name |
 
 
+![](https://github.com/user-attachments/assets/2a06dcd7-bb9c-4909-9a3c-cee6c8c51bb3)
+
+
 4. Verify the instance
 
 Verify that the instances have been created:
@@ -98,6 +106,10 @@ aws ec2 describe-instances \
 
 The command fetches the instance ID, Public IP and the state of the instance and outputs it in a table.
 
+
+![](https://github.com/user-attachments/assets/d5958181-cbf4-4f1f-afe8-881e29a3c323)
+
+
 5. Allow SSH into the instance
 
 Ensure that the security groups allows ssh:
@@ -110,10 +122,13 @@ Ensure that the security groups allows ssh:
 | SSH  | 22   | 0.0.0.0/0 |
 
 
-
+![](https://github.com/user-attachments/assets/4cbf2018-c892-4441-a582-5df16266b241)
 6. Login to the EC2 
 
-Login to the EC2 instance via the connect in the console
+Login to the EC2 instance via the EC2 Instance Connect in the console
+
+
+![](https://github.com/user-attachments/assets/15eefadf-77e5-4a38-9947-6f81358be760)
 
 7. Become root user
 
@@ -121,6 +136,9 @@ Login to the EC2 instance via the connect in the console
 ```bash
 sudo su -
 ```
+
+
+![](https://github.com/user-attachments/assets/0fbd2dad-82b7-4d80-9aae-cffd85a5be02)
 
 8.  Copy the public key on aws-client
 
@@ -131,6 +149,11 @@ cat /root/.ssh/id_rsa.pub
 ```
 
 - Copy the output and save it in a text editor
+
+
+![](https://github.com/user-attachments/assets/23fee85d-95d2-4e6e-acd7-b13eff4f53f6)
+
+
 
 9. Add the public key to the EC2 authorized_keys
 
@@ -152,6 +175,8 @@ Paste the copied public key into the authorized_keys, save and exit
 
 **When aws-client connects, SSH compares keys, if they match login succeeds automatically**
 
+![](https://github.com/user-attachments/assets/db64df2f-4762-40a6-a812-eb07ea1d1621)
+
 
 10. Set Correct permissions
 
@@ -163,7 +188,7 @@ chmod 600 /root/.ssh/authorized_keys
 
 Giving the correct permissions are important since SSH refuses insecure files.
 
-
+![](https://github.com/user-attachments/assets/db64df2f-4762-40a6-a812-eb07ea1d1621)
 
 11. Test passwordless SSH
  
@@ -174,3 +199,4 @@ ssh -i /root/.ssh/id_rsa root@<PUBIC-IP>
 
 Copy IP from the console or from the table from the previous step- described instance.
 
+![](https://github.com/user-attachments/assets/67f82329-a469-4120-a884-cfe85fea9853)
