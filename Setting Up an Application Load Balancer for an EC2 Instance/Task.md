@@ -86,6 +86,7 @@ Leave default:
 Click Create security group
 
 
+![SecurityGroup](https://github.com/user-attachments/assets/0bf38399-12d3-491b-8832-0d23195df87c)
 
 ### 3. Create Target Group
 
@@ -183,7 +184,7 @@ Click Create Load Balancer
 
 Wait until status becomes:
 >active
-
+![LoadBalancer](https://github.com/user-attachments/assets/99a70c34-bb3b-4d58-aa02-bbcaa4fb6993)
 
 ### 5. Modify EC2 Security Group
 
@@ -208,6 +209,7 @@ This ensures only the ALB can reach the EC2 instance.
 
 Save the changes
 
+![SGmodification](https://github.com/user-attachments/assets/0234d9a3-faa5-4abc-bcc5-90098962c4b4)
 
 ### 6. Verify Health Checks
 
@@ -222,7 +224,7 @@ You should see:
 datacenter-ec2
 Healthy
 ```
-
+![Healthchecks](https://github.com/user-attachments/assets/305fb364-bdfa-43d7-ae63-82ac20f2d11a)
 
 ### 6. Test the ALB
 
@@ -238,6 +240,8 @@ Copy the DNS Name and paste it in the browser:
 ```yaml
 Welcome to nginx!
 ```
+
+![](https://github.com/user-attachments/assets/dae42a21-ed80-4c39-9f82-43f277a844b5)
 
 ## Flow Chart:
 
