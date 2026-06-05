@@ -21,21 +21,40 @@ Using the AWS Management Console or AWS CLI, provision the private tracking repo
 ```bash
 aws ecr create-repository --repository-name nautilus-ecr --region us-east-1
 ```
+- Via the console, create the private repository, click the Create repository button on the top right.
+Configure the settings:
+- Visibility settings: Select Private.
+- Repository name: Enter exactly nautilus-ecr.
 
-### Step 2: Authenticate Local Docker Client to AWS
+Keep all other settings (like Tag immutability and Image scanning) at their defaults.Click Create repository at the bottom of the page
+
+
+### Step 2: Get the Push Commands from the Console
+1. In the ECR console list, click on your newly created nautilus-ecr repository.
+2. Look at the top right of the screen and click the View push commands button.
+3. A popup window will appear showing you the exact commands pre-filled with your AWS Account ID and Region. Leave this window open to copy the commands.
+
+![](https://github.com/user-attachments/assets/38386ac8-8707-406a-b7d4-7d7186cdc31b)
+
+
+
+### Step 3: Run the Commands on your aws-client Host
 Retrieve a secure registry token and tunnel it into the local Docker daemon:
 ```bash
 aws ecr get-login-password --region us-east-1 | docker login --username AWS --password-stdin <YOUR-ACCOUNT-ID>.dkr.ecr.us-east-1.amazonaws.com
 ```
 
-### Step 3: Build the Container Image
+### Step 4: Build the Container Image
 Navigate to the source directory and compile the optimized Dockerfile:
 ```bash
 cd /root/pyapp
 docker build -t nautilus-ecr .
 ```
+- Ensure that the Dockerfile is well configured
 
-### Step 4: Tag and Push the Artifact
+![](https://github.com/user-attachments/assets/5bcf2157-58a2-41e2-bcad-4240e7e8281c)
+
+### Step 5: Tag and Push the Artifact
 Map the local build image signature to the remote cloud storage path and execute the upload pipeline:
 ```bash
 # Tag the image
@@ -57,3 +76,6 @@ To automate asset management and minimize standard S3 storage fees, an ECR Lifec
 | **2** | Keep Fresh Build History | Any | Count exceeds 10 | **Expire / Delete** |
 
 This guarantees that whenever a new `latest` build replaces an older deployment, the deprecated untagged layers are swept away within two weeks, keeping infrastructure lean.
+
+![](https://github.com/user-attachments/assets/d0af39ea-18f8-4e4e-a525-cdb51e228bc6)
+![](https://github.com/user-attachments/assets/fda08ffa-2808-4607-9d5e-de7649f2fa60)
