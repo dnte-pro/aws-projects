@@ -207,7 +207,7 @@ Disabled
 
 ### 8. Install iptables
 
-SSH into the NAT instance or use the EC@ Instance Connect:
+SSH into the NAT instance or use the EC2 Instance Connect:
 - Become root
 ```bash
 sudo su -
@@ -386,4 +386,5 @@ systemctl restart iptables
 
 After the configuration the the cronjob should upload the file to s3 bucket
 
-This task demonstrated how internet access can be provided to private resources using a cost-effective NAT Instance. The most valuable lesson was troubleshooting packet forwarding by identifying an iptables rule-ordering issue that prevented traffic from reaching the internet despite the NAT configuration appearing correct at first glance
+This task demonstrated how internet access can be provided to private resources using a cost-effective NAT Instance. 
+The most valuable lesson is troubleshooting packet forwarding by identifying an iptables rule-ordering issue that prevented traffic from reaching the internet despite the NAT configuration appearing correct at first glance
