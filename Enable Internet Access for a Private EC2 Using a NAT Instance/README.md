@@ -356,15 +356,21 @@ Verify:
 iptables -L FORWARD -n -v
 ```
 Result:
-
+```bash
 ACCEPT all -- ens5 * state RELATED,ESTABLISHED
 
 ACCEPT all -- * ens5
-
+```
 Save changes:
-
+```bash
 iptables-save > /etc/sysconfig/iptables
-
+```
 Restart:
-
+```bash
 systemctl restart iptables
+```
+
+
+After the configuration the the cronjob should upload the file to s3 bucket
+
+This task demonstrated how internet access can be provided to private resources using a cost-effective NAT Instance. The most valuable lesson was troubleshooting packet forwarding by identifying an iptables rule-ordering issue that prevented traffic from reaching the internet despite the NAT configuration appearing correct at first glance
