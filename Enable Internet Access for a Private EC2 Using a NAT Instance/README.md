@@ -76,7 +76,7 @@ Configuration:
 
 The VPC CIDR is ```10.1.0.0/24```
 
-![]()
+![](https://github.com/user-attachments/assets/792d63fb-de84-4812-8d62-5b286cf607fd)
 
 
 ### 2. Enable Auto-Assign Public IP
@@ -91,6 +91,7 @@ Choose nautilus-pub-subnet,
 
 Enable: ```Auto-assign public IPv4 address ```
 
+![](https://github.com/user-attachments/assets/c876fa0f-6d60-4ffe-9e5e-03813f847ed9)
 
 ### 3. Create and Attach an Internet Gateway
 
@@ -109,6 +110,10 @@ Attach it to:
 ```text
 nautilus-priv-vpc
 ```
+
+
+
+![](https://github.com/user-attachments/assets/a8d19db5-7088-4d91-99ab-933ed3795919)
 
 ### 4. Create a Public Route Table
 
@@ -135,6 +140,8 @@ Associate:
 nautilus-pub-subnet
 ```
 
+
+![](https://github.com/user-attachments/assets/f835579b-86d1-4b0a-862a-f2949a3ee6a1)
 ### 5. Create a Security Group for the NAT Instance
 
 Navigate to:
@@ -153,6 +160,8 @@ nautilus-nat-sg
 | All Traffic | 10.1.0.0/16 |
 
 
+
+![](https://github.com/user-attachments/assets/50f70033-2e93-4458-a219-cc3e1d8a8183)
 ### 6. Launch the NAT Instance
 
 Navigate to:
@@ -170,6 +179,8 @@ Configuration:
 | Subnet         | nautilus-pub-subnet   |
 | Public IP      | Enabled               |
 | Security Group | nautilus-nat-sg       |
+
+![](https://github.com/user-attachments/assets/1f1158e9-22d5-4fb9-9d43-a3821f581fd5)
 
 ### 7. Disable Source/Destination Check
 
@@ -190,6 +201,8 @@ Set:
 ```text
 Disabled
 ```
+
+![](https://github.com/user-attachments/assets/3fb9d129-4b46-4e04-a948-99162d59e766)
 
 
 ### 8. Install iptables
@@ -297,7 +310,7 @@ Verify the presence of:
 ```text
 nautilus-test.txt
 ```
-
+![](https://github.com/user-attachments/assets/af1bade7-8769-45a3-a9ee-ec1fe07842bd)
 
 
 >Problem Encountered
@@ -340,7 +353,7 @@ ACCEPT all -- * ens5
 The REJECT rule appeared before the ACCEPT rules.
 
 Because iptables evaluates rules from top to bottom, all forwarded traffic was being rejected before reaching the NAT rules.
-
+![](https://github.com/user-attachments/assets/71165433-5b2c-4602-9a19-ab7eb376b16e)
 >Fix
 
 Display numbered rules:
